@@ -3,8 +3,9 @@ import RegisterUserUseCase from '../modules/user/application/register-user.useca
 import UserMemoryRepository from '../modules/user/infrastructure/user-memory.repository';
 import GetAllUsersUseCase from '../modules/user/application/get-all-users.usecase';
 
-const saveUser = new RegisterUserUseCase(new UserMemoryRepository())
-const getAllUsers = new GetAllUsersUseCase(new UserMemoryRepository())
+const userRepository = new UserMemoryRepository()
+const saveUser = new RegisterUserUseCase(userRepository)
+const getAllUsers = new GetAllUsersUseCase(userRepository)
 
 export const registerUserHanlder = async (request: Request, response: Response, next: NextFunction) => {
   const { 
